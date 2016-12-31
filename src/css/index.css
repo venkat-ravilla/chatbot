@@ -438,3 +438,22 @@ img {
     z-index: 2;
     margin-left: -1px;
 }
+
+.box{
+	position: absolute;
+	width: 25%;
+	bottom: 0px;
+	right: 50px;
+}
+
+.hide{
+	display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    /* For mobile phones: */
+    .box {
+        width: 100%;
+        right:0;
+    }
+}

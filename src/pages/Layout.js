@@ -15,6 +15,10 @@ import Footer from "../components/Footer";
 export default class Layout extends React.Component {
 	constructor(props){
 		super(props);
+		this.state={
+			showChat:true,
+			minMaxToggle:true
+		}
 	}
 
 	componentDidMount() {
@@ -29,12 +33,37 @@ export default class Layout extends React.Component {
 		this.props.dispatch(action);
 	}
 
+	minMaxToggle(){
+		if (this.state.minMaxToggle) {
+			this.setState({
+				showChat:true,
+				minMaxToggle:false
+			})
+		}else{
+			this.setState({
+				showChat:true,
+				minMaxToggle:true
+			})
+		}
+		
+	}
+
+	removeChat(){
+		this.setState({
+			showChat:false,
+			minMaxToggle:true
+		})
+	}
+
 	render() {
+		const body = <Body  messages={this.props.messages}/>
+		const footer = <Footer dispatchUserAction={this.dispatchUserAction.bind(this)} />
+		const classString = (this.state.showChat?"":"hide ")+"box box-warning direct-chat direct-chat-warning"
 		return (
-			<div class="box box-warning direct-chat direct-chat-warning">
-				<Header />
-				<Body  messages={this.props.messages}/>
-				<Footer dispatchUserAction={this.dispatchUserAction.bind(this)} />
+			<div class={classString}>
+				<Header minMaxToggle={this.minMaxToggle.bind(this)} removeChat={this.removeChat.bind(this)} />
+				{this.state.showChat && this.state.minMaxToggle?body:null}
+				{this.state.showChat && this.state.minMaxToggle?footer:null}
 			</div>
 		);
 	}

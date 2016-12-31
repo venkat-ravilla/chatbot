@@ -26,6 +26,7 @@ export default class Footer extends React.Component {
 			sendButtonStatus:true,
 			inputText:""
 		})
+		e.preventDefault();
 	}
 
 	inputChangeHandler(e){
@@ -47,7 +48,7 @@ export default class Footer extends React.Component {
 	render() {
 		return (
 			<div class="box-footer">
-				<form action="#" >
+				<form onSubmit={this.sendButtonClickHandler.bind(this)}>
 					<div class="input-group">
 						<input type="text" value={this.state.inputText} name="message" onChange={this.inputChangeHandler.bind(this)} placeholder="Type Message ..." class="form-control" />
 						<span class="input-group-btn">

@@ -23,7 +23,7 @@ export default function reducer(state={
 			state.messages.push({
 				id: state.messageCount,
 				type:"agent",
-				message:payLoadData.result.parameters.simplified,
+				message:agentMessageParser(payLoadData),
 				time:date.toDateString()+" "+date.toLocaleTimeString(),
 				username:"Agent"
 			})
@@ -35,4 +35,12 @@ export default function reducer(state={
 		}
 	}
 	return state;
+}
+
+function agentMessageParser(responseData){
+	console.log(responseData);
+	if(responseData.result.action.indexOf("smalltalk") !=-1 && responseData.result.fulfillment != null && responseData.result.fulfillment.speech != null && responseData.result.fulfillment.speech!=""){
+		return responseData.result.fulfillment.speech;
+	}
+	return "My apologies... I don't understand";
 }
