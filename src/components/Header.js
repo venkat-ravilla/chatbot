@@ -3,6 +3,10 @@ import React from "react";
 export default class Header extends React.Component {
 	constructor(props){
 		super(props);
+		this.state = {
+			class:"fa fa-minus",
+			minflag:false
+		}
 	}
 
 	componentDidMount() {
@@ -15,6 +19,17 @@ export default class Header extends React.Component {
 
 	minMaxToggle(){
 		this.props.minMaxToggle();
+		if(this.state.minflag){
+			this.setState({
+				class:"fa fa-minus",
+				minflag:false
+			});			
+		}else{
+			this.setState({
+				class:"fa fa-plus",
+				minflag:true
+			});
+		}
 	}
 
 	removeChat(){
@@ -28,7 +43,7 @@ export default class Header extends React.Component {
 				<div class="box-tools pull-right">
 					<span class="badge bg-yellow" data-toggle="tooltip" data-original-title="3 New Messages" >3</span>
 					<button type="button" onClick={this.minMaxToggle.bind(this)} class="btn btn-box-tool" data-widget="collapse">
-						<i class="fa fa-minus"></i>
+						<i class={this.state.class}></i>
 					</button>
 					<button type="button" class="hide btn btn-box-tool" data-widget="chat-pane-toggle" data--toggle="tooltip" data-original-title="Contacts">
 						<i class="fa fa-comments"></i>

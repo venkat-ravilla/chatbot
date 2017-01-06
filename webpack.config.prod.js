@@ -7,9 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     context: resolve(__dirname,'./src'),
     devtool: debug?'inline-source-map':null,
-    entry: ["webpack-dev-server/client?http://localhost:8080/",
-            "webpack/hot/dev-server",
-            "./index.js"],
+    entry: "./index.js",
     output: {
         path: resolve(__dirname,'dist'),
         filename: 'bundle.min.js',

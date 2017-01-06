@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "test.js",
-    "main": "webpack --config ./webpack.config.js",
+    "dev": "webpack --config ./webpack.config.js",
+    "prod": "webpack --config ./webpack.config.prod.js",
     "start": "webpack-dev-server --inline --hot --history-api-fallback"
   },
   "repository": {
